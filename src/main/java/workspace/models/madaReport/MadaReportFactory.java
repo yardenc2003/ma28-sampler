@@ -1,7 +1,6 @@
 package workspace.models.madaReport;
 
 import lombok.SneakyThrows;
-import org.apache.commons.collections.Factory;
 import workspace.models.EntityFactory;
 
 import java.text.SimpleDateFormat;
@@ -13,7 +12,10 @@ public class MadaReportFactory implements EntityFactory {
 
     @SneakyThrows
     @Override
-    public MadaReport create(String... fields) {
+    public MadaReport create(String... fields) throws IllegalArgumentException {
+        if (fields.length < 12) {
+            throw new IllegalArgumentException("Exactly 12 args are required");
+        }
         String madaCode = fields[0];
         String idNum = fields[1];
         int idType = Integer.parseInt(fields[2]);
