@@ -23,11 +23,7 @@ public class Main {
         int maxRecords = Integer.parseInt(configurationsHandler.getField("maxRecords"));
         String madaReportsSrc = configurationsHandler.getField("madaReportsSrc");
         String madaReportsDst = configurationsHandler.getField("madaReportsDst");
-
-        List<Entity> madaReportList = new CSVFileParser().parseEntities(madaReportsSrc, new MadaReportFactory());
-        FileSerializer jsonFileSerializer = new JsonFileSerializer();
-        jsonFileSerializer.serializeEntities(maxRecords, madaReportsDst, madaReportList);
-
+        
         SamplerETLQueries samplerETLQueries = new SamplerETLQueriesManager();
         List<Entity> madaReportsList = samplerETLQueries.extractMadaReports(configurationsHandler.getField("madaReportsSrc"));
         samplerETLQueries.loadMadaReports(maxRecords, madaReportsDst, madaReportsList);
