@@ -33,5 +33,6 @@ public class Main {
         String labTestsSrc = configurationsHandler.getField("labTestsSrc");
         String labTestsDst = configurationsHandler.getField("labTestsDst");
         List<Entity> labTestsList = samplerETLQueries.extractLabTests(labTestsSrc);
+        samplerETLQueries.loadLabTests(maxRecords, labTestsDst, labTestsList);
     }
 }
