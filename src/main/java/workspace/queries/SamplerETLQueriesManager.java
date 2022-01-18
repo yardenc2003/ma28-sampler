@@ -19,7 +19,7 @@ public class SamplerETLQueriesManager implements SamplerETLQueries {
     private final Map<String, FileSerializer> fileSerializersMap = new HashMap<>();
     private final Map<String, EntityFactory> entityFactoriesMap = new HashMap<>();
 
-    public SamplerETLQueriesManager(){
+    public SamplerETLQueriesManager() {
         this.fileParsersMap.put("csv", new CSVFileParser());
         this.fileSerializersMap.put("json", new JsonFileSerializer());
         this.entityFactoriesMap.put("madaReport", new MadaReportFactory());
@@ -40,7 +40,7 @@ public class SamplerETLQueriesManager implements SamplerETLQueries {
 
     @Override
     public void loadMadaReports(int maxRecords, String fileName, List<Entity> entitiesList) throws IOException {
-        this.fileSerializersMap.get("json").serializeEntities(maxRecords, fileName, entitiesList);
+        this.loadEntities(maxRecords, "json", fileName, entitiesList);
     }
 }
 

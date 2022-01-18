@@ -2,11 +2,7 @@ package workspace;
 
 import workspace.fileHandlers.configurations.ConfigurationsHandler;
 import workspace.fileHandlers.configurations.PropertiesHandler;
-import workspace.fileHandlers.readers.parsers.csv.CSVFileParser;
-import workspace.fileHandlers.writers.FileSerializer;
-import workspace.fileHandlers.writers.json.JsonFileSerializer;
 import workspace.models.Entity;
-import workspace.models.madaReport.MadaReportFactory;
 import workspace.queries.SamplerETLQueries;
 import workspace.queries.SamplerETLQueriesManager;
 
