@@ -15,7 +15,7 @@ public class MadaReportFactory implements EntityFactory {
             throw new IllegalArgumentException("Exactly 12 args are required");
         }
         String madaCode = fields[0];
-        String idNum = fields[1];
+        int idNum = Integer.parseInt(fields[1]);
         int idType = Integer.parseInt(fields[2]);
         String firstName = fields[3];
         String lastName = fields[4];
