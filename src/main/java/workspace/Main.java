@@ -23,9 +23,9 @@ public class Main {
         int maxRecords = Integer.parseInt(configurationsHandler.getField("maxRecords"));
         String madaReportsSrc = configurationsHandler.getField("madaReportsSrc");
         String madaReportsDst = configurationsHandler.getField("madaReportsDst");
-        
+
         SamplerETLQueries samplerETLQueries = new SamplerETLQueriesManager();
-        List<Entity> madaReportsList = samplerETLQueries.extractMadaReports(configurationsHandler.getField("madaReportsSrc"));
+        List<Entity> madaReportsList = samplerETLQueries.extractMadaReports(madaReportsSrc);
         samplerETLQueries.loadMadaReports(maxRecords, madaReportsDst, madaReportsList);
     }
 }
