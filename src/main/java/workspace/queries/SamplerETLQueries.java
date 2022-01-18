@@ -10,5 +10,6 @@ public interface SamplerETLQueries {
     void loadMadaReports(int maxRecords, String fileName, List<Entity>entitiesList) throws IOException;
     List<Entity> extractLabTests(String fileName) throws IOException;
     void loadLabTests(int maxRecords, String fileName, List<Entity>entitiesList) throws IOException;
+    void addHealthServiceInfo(List<Entity> labTestList);
 }
 

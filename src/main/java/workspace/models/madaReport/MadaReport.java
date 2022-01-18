@@ -12,7 +12,7 @@ import java.util.Date;
 @Data
 public class MadaReport extends Entity {
     private String madaCode;
-    private String idNum;
+    private int idNum;
     private int idType;
     private String firstName;
     private String lastName;

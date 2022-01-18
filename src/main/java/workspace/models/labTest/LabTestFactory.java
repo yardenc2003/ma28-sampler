@@ -13,7 +13,7 @@ public class LabTestFactory implements EntityFactory {
         if (fields.length < 11) {
             throw new IllegalArgumentException("Exactly 11 args are required");
         }
-        String idNum = fields[0];
+        int idNum = Integer.parseInt(fields[0]);
         int idType = Integer.parseInt(fields[1]);
         String firstName = fields[2];
         String lastName = fields[3];
