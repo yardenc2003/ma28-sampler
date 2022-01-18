@@ -5,6 +5,7 @@ import workspace.fileHandlers.readers.parsers.FileParser;
 import workspace.fileHandlers.readers.parsers.csv.CSVFileParser;
 import workspace.fileHandlers.writers.FileSerializer;
 import workspace.fileHandlers.writers.json.JsonFileSerializer;
+import workspace.fileHandlers.writers.xml.XMLFileSerializer;
 import workspace.models.Entity;
 import workspace.models.EntityFactory;
 import workspace.models.labTest.LabTestFactory;
@@ -23,6 +24,7 @@ public class SamplerETLQueriesManager implements SamplerETLQueries {
     public SamplerETLQueriesManager() {
         this.fileParsersMap.put("csv", new CSVFileParser());
         this.fileSerializersMap.put("json", new JsonFileSerializer());
+        this.fileSerializersMap.put("xml", new XMLFileSerializer());
         this.entityFactoriesMap.put("madaReport", new MadaReportFactory());
         this.entityFactoriesMap.put("labTest", new LabTestFactory());
     }
@@ -48,11 +50,11 @@ public class SamplerETLQueriesManager implements SamplerETLQueries {
     @Override
     public List<Entity> extractLabTests(String fileName) throws IOException {
         return this.extractEntities("csv", "labTest", fileName);
-
     }
 
     @Override
     public void loadLabTests(int maxRecords, String fileName, List<Entity> entitiesList) throws IOException {
+        this.loadEntities(maxRecords, "xml", fileName, entitiesList);
     }
 }
 
