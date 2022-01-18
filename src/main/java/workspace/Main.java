@@ -7,6 +7,8 @@ import workspace.fileHandlers.writers.FileSerializer;
 import workspace.fileHandlers.writers.json.JsonFileSerializer;
 import workspace.models.Entity;
 import workspace.models.madaReport.MadaReportFactory;
+import workspace.queries.SamplerETLQueries;
+import workspace.queries.SamplerETLQueriesManager;
 
 import java.io.IOException;
 import java.util.List;
@@ -25,5 +27,9 @@ public class Main {
         List<Entity> madaReportList = new CSVFileParser().parseEntities(madaReportsSrc, new MadaReportFactory());
         FileSerializer jsonFileSerializer = new JsonFileSerializer();
         jsonFileSerializer.serializeEntities(maxRecords, madaReportsDst, madaReportList);
+
+        SamplerETLQueries samplerETLQueries = new SamplerETLQueriesManager();
+        List<Entity> madaReportsList = samplerETLQueries.extractMadaReports(configurationsHandler.getField("madaReportsSrc"));
+        samplerETLQueries.loadMadaReports(maxRecords, madaReportsDst, madaReportsList);
     }
 }
