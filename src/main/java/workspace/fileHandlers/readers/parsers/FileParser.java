@@ -8,5 +8,5 @@ import java.io.IOException;
 import java.util.List;
 
 public interface FileParser {
-    List<Entity> extractEntities(EntityFactory entityFactory, String fileName) throws IOException, CsvValidationException;
+    List<Entity> parseEntities(String fileName, EntityFactory entityFactory) throws IOException;
 }

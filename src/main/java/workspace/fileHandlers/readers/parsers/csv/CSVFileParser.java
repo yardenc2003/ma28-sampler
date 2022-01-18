@@ -1,20 +1,20 @@
 package workspace.fileHandlers.readers.parsers.csv;
 
 import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvValidationException;
+import lombok.SneakyThrows;
 import workspace.fileHandlers.readers.parsers.FileParser;
-import workspace.models.EntityFactory;
 import workspace.models.Entity;
+import workspace.models.EntityFactory;
 
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CSVFileParser implements FileParser {
 
+    @SneakyThrows
     @Override
-    public List<Entity> extractEntities(EntityFactory entityFactory, String fileName) throws IOException, CsvValidationException {
+    public List<Entity> parseEntities(String fileName, EntityFactory entityFactory) {
         List<Entity> entitiesList = new ArrayList<>();
         CSVReader csvReader = new CSVReader(new FileReader(fileName));
         String[] record;

@@ -1,9 +1,10 @@
 package workspace;
 
-import com.opencsv.exceptions.CsvValidationException;
 import workspace.fileHandlers.configurations.ConfigurationsHandler;
 import workspace.fileHandlers.configurations.PropertiesHandler;
 import workspace.fileHandlers.readers.parsers.csv.CSVFileParser;
+import workspace.fileHandlers.writers.FileSerializer;
+import workspace.fileHandlers.writers.json.JsonFileSerializer;
 import workspace.models.Entity;
 import workspace.models.madaReport.MadaReportFactory;
 
@@ -13,12 +14,16 @@ import java.util.List;
 public class Main {
     public static final String configurationsFileName = "C:\\Users\\yarde\\Documents\\Exercises\\Solutions\\MyGitProjects\\ma28-sampler\\src\\main\\resources\\sampler_configurations.properties";
 
-    public static void main(String[] args) throws CsvValidationException, IOException {
-        List<Entity> madaReportList = new CSVFileParser().extractEntities(new MadaReportFactory(), "C:\\Users\\yarde\\Documents\\Exercises\\Solutions\\MyGitProjects\\ma28-sampler\\src\\main\\resources\\MadaReports.csv");
-        Entity e = madaReportList.get(0);
-        System.out.println(e.toString());
+    public static void main(String[] args) throws IOException {
         ConfigurationsHandler configurationsHandler = new PropertiesHandler();
         configurationsHandler.load(configurationsFileName);
-        System.out.println(configurationsHandler.getField("madaReportsSrc"));
+
+        int maxRecords = Integer.parseInt(configurationsHandler.getField("maxRecords"));
+        String madaReportsSrc = configurationsHandler.getField("madaReportsSrc");
+        String madaReportsDst = configurationsHandler.getField("madaReportsDst");
+
+        List<Entity> madaReportList = new CSVFileParser().parseEntities(madaReportsSrc, new MadaReportFactory());
+        FileSerializer jsonFileSerializer = new JsonFileSerializer();
+        jsonFileSerializer.serializeEntities(maxRecords, madaReportsDst, madaReportList);
     }
 }

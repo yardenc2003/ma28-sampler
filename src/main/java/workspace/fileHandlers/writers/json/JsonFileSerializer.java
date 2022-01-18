@@ -11,13 +11,8 @@ import java.util.List;
 public class JsonFileSerializer extends FileSerializer {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public JsonFileSerializer(int maxRecords) {
-        super(maxRecords);
-    }
-
     @Override
     protected void serializeSingleFile(String fileName, List<Entity> entitiesList) throws IOException {
-        System.out.println(entitiesList.size());
         this.objectMapper.writeValue(new File(fileName), entitiesList);
     }
 }
